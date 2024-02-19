@@ -1,0 +1,39 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+.bg-ash {
+  background-color: #b2beb5;
+}
+.bg-purple {
+  background-color: #a05aff;
+}
+
+.bg-teal {
+  background-color: #1bcfb4;
+}
+
+.bg-light-blue {
+  background-color: #4bcbeb;
+}
+
+.bg-pink {
+  background-color: #fe9496;
+}
+
+.bg-violet {
+  background-color: #9e58ff;
+}
+.bg-dark-blue {
+  background-color: #1a55e3;
+}
+.bg-light-red {
+  background-color: #ff0854;
+}
+.bg-purplish-blue {
+  background-color: #5e6eed;
+}
+.bg-light-gray {
+  background-color: #d1d5db;
+}
