@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import customerToast from "./components/common/CustomToast";
-import { Navigate } from "react-router-dom";
 import axios from "axios";
 
 export default function UpdateStudent() {
@@ -11,10 +10,17 @@ export default function UpdateStudent() {
   useEffect(() => {
     const id = location.search.split("?")[1];
     console.log(id);
-    axios.get(`http://localhost:8080/student/${id}`).then((result) => {
-      console.log(result.data);
-      setStudentDetails(result.data.student);
-    });
+    axios
+      .get(`http://localhost:8080/student/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((result) => {
+        console.log(result.data);
+        setStudentDetails(result.data.student);
+      });
   }, [location.search]);
 
   const navigate = useNavigate();
@@ -40,13 +46,22 @@ export default function UpdateStudent() {
   const updateStudentDetails = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8080/student/update/${studentDetails._id}`, {
-        _id: studentDetails._id,
-        name: studentDetails.name,
-        age: studentDetails.age,
-        image: studentDetails.image,
-        status: studentDetails.status,
-      })
+      .put(
+        `http://localhost:8080/student/update/${studentDetails._id}`,
+        {
+          _id: studentDetails._id,
+          name: studentDetails.name,
+          age: studentDetails.age,
+          image: studentDetails.image,
+          status: studentDetails.status,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
       .then((result) => {
         console.log(result.data);
         customerToast("Student Updated Successfully!", "info");

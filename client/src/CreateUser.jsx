@@ -22,13 +22,22 @@ export default function CreateUser() {
   const Submit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/student/add", {
-        _id,
-        name,
-        age,
-        status,
-        image,
-      })
+      .post(
+        "http://localhost:8080/student/add",
+        {
+          _id,
+          name,
+          age,
+          status,
+          image,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
       .then((result) => {
         console.log(result.data);
       })

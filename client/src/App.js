@@ -5,10 +5,8 @@ import { ToastContainer } from "react-toastify";
 import Student from "./Student";
 import CreateStudent from "./CreateStudent";
 import UpdateStudent from "./UpdateStudent";
-import { GoogleLogin } from "./GoogleLogin";
 import LoginSignUp from "./components/LoginSignup";
 import ProtectedRoute from "./components/common/ProtectedRoute";
-import useAuth from "./auth/Auth.js";
 import SignUp from "./components/SignUp.jsx";
 import NewComponent from "./components/new.jsx";
 

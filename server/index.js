@@ -6,19 +6,20 @@ import cors from "cors";
 import studentRouter from "./routes/student.route.js";
 import UserRouter from "./routes/user.route.js";
 import bodyParser from "body-parser";
+import validateToken from "./middlewares/JwtValidation.js";
 
 const app = express();
 app.use(
   cors({
     origin: "*",
-    allowedHeaders: ["Content-Type"],
+    allowedHeaders: ["*"],
   })
 );
 
 app.use(bodyParser.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 app.use(express.json());
-app.use("/student", studentRouter);
+app.use("/student", validateToken, studentRouter);
 app.use("/user", UserRouter);
 
 mongoose

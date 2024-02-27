@@ -12,6 +12,10 @@ export default function Student() {
   function getAllStudents() {
     fetch("http://localhost:8080/student/", {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -23,6 +27,10 @@ export default function Student() {
   function deleteStudent(id) {
     fetch(`http://localhost:8080/student/delete/${id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
